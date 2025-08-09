@@ -1,0 +1,24 @@
+healthguardian-llm/
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── api.py
+│   │   ├── models_ml.py
+│   │   ├── recommend.py
+│   │   ├── llm_client.py
+│   │   ├── db.py
+│   │   └── schemas.py
+│   ├── models/               # trained model & preprocessor saved here
+│   ├── requirements.txt
+│   └── Dockerfile
+├── ml/
+│   └── train.py
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── api.js
+│   │   └── index.css
+│   ├── package.json
+│   └── Dockerfile
+├── docker-compose.yml
+└── README.md
