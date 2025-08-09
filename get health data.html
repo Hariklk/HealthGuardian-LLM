@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Data Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .success {
+            color: green;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Enter Your Health Data</h2>
+
+    <label>Full Name</label>
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <label>Age</label>
+    <input type="number" id="age" placeholder="Enter your age">
+
+    <label>Gender</label>
+    <select id="gender">
+        <option value="">Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <label>Height (cm)</label>
+    <input type="number" id="height" placeholder="Enter your height">
+
+    <label>Weight (kg)</label>
+    <input type="number" id="weight" placeholder="Enter your weight">
+
+    <label>Medical Conditions</label>
+    <textarea id="conditions" placeholder="e.g. Diabetes, Hypertension"></textarea>
+
+    <label>Daily Activity Level</label>
+    <select id="activity">
+        <option value="">Select activity level</option>
+        <option value="Low">Low</option>
+        <option value="Moderate">Moderate</option>
+        <option value="High">High</option>
+    </select>
+
+    <label>Diet Preference</label>
+    <select id="diet">
+        <option value="">Select diet type</option>
+        <option value="Vegetarian">Vegetarian</option>
+        <option value="Non-Vegetarian">Non-Vegetarian</option>
+        <option value="Vegan">Vegan</option>
+    </select>
+
+    <button onclick="submitHealthData()">Submit</button>
+    <p id="message" class=""></p>
+</div>
+
+<script>
+    async function submitHealthData() {
+        const name = document.getElementById("name").value;
+        const age = document.getElementById("age").value;
+        const gender = document.getElementById("gender").value;
+        const height = document.getElementById("height").value;
+        const weight = document.getElementById("weight").value;
+        const conditions = document.getElementById("conditions").value;
+        const activity = document.getElementById("activity").value;
+        const diet = document.getElementById("diet").value;
+        const message = document.getElementById("message");
+
+        if (!name || !age || !gender || !height || !weight || !activity || !diet) {
+            message.textContent = "Please fill all required fields";
+            message.className = "error";
+            return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:5000/api/health-data", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    name, age, gender, height, weight, conditions, activity, diet
+                })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                message.textContent = "Health data submitted successfully!";
+                message.className = "success";
+            } else {
+                message.textContent = data.message || "Error submitting data";
+                message.className = "error";
+            }
+        } catch (err) {
+            message.textContent = "Server connection error";
+            message.className = "error";
+        }
+    }
+</script>
+
+</body>
+</html>
