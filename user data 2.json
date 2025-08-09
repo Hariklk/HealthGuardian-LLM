@@ -1,0 +1,31 @@
+{
+  "user_id": "64fbc2e8a1234567890abcde",
+  "date": "2025-08-09",
+  "water_intake_l": 2.5,
+  "steps_walked": 8500,
+  "calories_consumed": 1800,
+  "sleep_hours": 7.5,
+  "exercise_minutes": 45,
+  "diet_log": [
+    {"meal": "Breakfast", "items": ["Oats", "Banana", "Green Tea"]},
+    {"meal": "Lunch", "items": ["Grilled Chicken", "Brown Rice", "Salad"]},
+    {"meal": "Dinner", "items": ["Soup", "Steamed Vegetables"]}
+  ]
+}
+{
+  "user_id": "64fbc2e8a1234567890abcde",
+  "date": "2025-08-09",
+  "diet_plan": [
+    "Eat more leafy greens and whole grains",
+    "Reduce sugar intake to manage diabetes"
+  ],
+  "exercise_plan": [
+    "30 minutes brisk walking",
+    "10 minutes stretching"
+  ],
+  "sleep_tips": [
+    "Go to bed at 10 PM",
+    "Avoid screens 1 hour before sleep"
+  ],
+  "hydration_tip": "Drink at least 3 liters of water today"
+}
