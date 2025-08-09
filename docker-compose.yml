@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  mongo:
+    image: mongo:6
+    restart: always
+    ports: ["27017:27017"]
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/healthguardian
+      LLM_API_URL: ""        # set if using non-OpenAI LLM
+      OPENAI_API_KEY: ""     # set if using OpenAI
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
