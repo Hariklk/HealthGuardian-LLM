@@ -1,0 +1,16 @@
+{
+  "_id": "64fbc2e8a1234567890abcde",
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "age": 30,
+  "gender": "Male",
+  "height_cm": 175,
+  "weight_kg": 70,
+  "medical_conditions": ["Diabetes", "Hypertension"],
+  "goals": {
+    "weight_loss": true,
+    "muscle_gain": false,
+    "improve_sleep": true
+  },
+  "created_at": "2025-08-09T12:00:00Z"
+}
