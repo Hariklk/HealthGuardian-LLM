@@ -22,4 +22,3 @@ It uses user-provided health data to **predict daily recommendations** such as d
 - **LLM Integration:** OpenAI API / Hugging Face Transformers
 - **Data Visualization:** Matplotlib, Seaborn
 
-## 📂 Project Structure
